@@ -248,7 +248,7 @@ footer b{color:var(--dtext)}
 </div></section>
 
 <section id="films"><div class="wrap">
-  <div class="sec-head"><div><h2>姓氏影片</h2><p>左边是一个姓的三千年，右边是同一时刻的世界。评论区打出你的姓，点赞最多的下一个做。</p></div></div>
+  <div class="sec-head"><div><h2>姓氏影片</h2><p>左边是一个姓的三千年，右边是同一时刻的世界。</p></div></div>
   <div class="films">
     <div class="film-card"><video src="video/deng.mp4" poster="video/deng.jpg" controls playsinline preload="none"></video><div class="txt"><h3>一个姓，四千年</h3><p>一个邓氏家族的 147 代：从商朝受封，到邓绥"只要纸墨"，再到湖南隆回。<a href="https://jinhuadeng.github.io/deng-genealogy/" target="_blank" rel="noopener" style="color:var(--seal2)">看邓氏族谱网站 →</a></p></div></div>
     <div class="film-card"><video src="video/li.mp4" poster="video/li.jpg" controls playsinline preload="none"></video><div class="txt"><h3>一个姓，一亿人</h3><p>理氏改李、老子、李唐、李白望月——一个姓，一亿人。</p></div></div>
@@ -354,7 +354,7 @@ $('cards').onclick = e => { const c = e.target.closest('.card'); if (!c) return;
 function renderSpace(){
   const d = DATA[curS]; $('sp-name').textContent = d.c;
   $('sp-note').textContent = d.route ? `${d.c}姓的主要迁徙脉络，取自本站《${d.c === '邓' ? '一个姓，四千年' : d.c === '李' ? '一个姓，一亿人' : '一个姓，走遍天下'}》。各支族的具体谱籍地，可在上图平台的地图检索中查看。`
-    : `${d.c}姓的迁徙故事还在整理中。各支族的谱籍地分布，可以先去上图平台的地图检索查看；也可以在评论区投票，让我们下一部影片就做${d.c}姓。`;
+    : `${d.c}姓的迁徙故事还在整理中。各支族的谱籍地分布，可以先去上图平台的地图检索查看。`;
   $('sp-go').href = JP(d.c);
   const s = STATS[d.c] || {}, pv = s.prov || [], max = Math.max(1, ...pv.map(x => x[1]));
   $('bars').innerHTML = pv.length ? `<div style="font-size:13px;color:var(--dsoft);margin-bottom:4px">上图所藏${d.c}氏家谱的谱籍省份（部）</div>` + pv.map(([v, n]) => `<div class="bar">${v}<i style="width:${n / max * 100}%"></i><span>${n}</span></div>`).join('') : '';

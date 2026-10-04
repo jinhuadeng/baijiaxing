@@ -345,7 +345,7 @@ $('cards').onclick = e => { const c = e.target.closest('.card'); if (!c) return;
 function renderSpace(){
   const d = DATA[curS]; $('sp-name').textContent = d.py;
   $('sp-note').textContent = d.route ? `The main migration of the ${d.py} name, from our film. Where each branch settled is recorded in its clan book.`
-    : `We haven't told the ${d.py} story yet. Comment your surname under our videos — the most-requested name gets the next film.`;
+    : `We haven't told the ${d.py} story yet.`;
   $('sp-go').href = JP(d.c);
   const s = STATS[d.c] || {}, pv = s.prov || [], max = Math.max(1, ...pv.map(x => x[1]));
   $('bars').innerHTML = pv.length ? `<div style="font-size:13px;color:var(--dsoft);margin-bottom:4px">Where ${d.py} clan books come from (by province)</div>` + pv.map(([v, n]) => `<div class="bar">${v}<i style="width:${n / max * 100}%"></i><span>${n}</span></div>`).join('') : '';
