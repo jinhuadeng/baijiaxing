@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>百家姓 · 四千年 — 从一部家谱，找到你从哪里来</title>
+<meta name="description" content="按姓氏、谱籍地、堂号检索中国家谱，看每个姓氏的四千年故事，免费寻根检查。">
+<link rel="canonical" href="https://jinhuadeng.github.io/baijiaxing/">
+<meta property="og:title" content="百家姓 · 四千年 — 从一部家谱，找到你从哪里来">
+<meta property="og:image" content="https://jinhuadeng.github.io/baijiaxing/video/chen.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2230; --ink2:#252e3f; --paper:#f4ede0; --paper2:#ebe2cf; --line:#d9cdb4; --text:#231d18; --soft:#6a5e52;
+  --seal:#ab2f28; --seal2:#7f211c; --gold:#d4a95a; --jade:#5f9c7a; --card:#fbf7ee;
+  --dtext:#e9e2d2; --dsoft:#9aa3b2; --dline:#36415a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Serif SC","Songti SC",serif;background:var(--paper);color:var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+button{font:inherit;cursor:pointer}
+
+/* 顶栏 */
+.nav{position:sticky;top:0;z-index:20;background:rgba(27,34,48,.96);backdrop-filter:blur(6px);color:var(--dtext);border-bottom:1px solid var(--dline)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:62px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;letter-spacing:2px;white-space:nowrap}
+.logo i{font-style:normal;width:34px;height:34px;display:grid;place-items:center;background:var(--seal);color:#f6ead6;border-radius:4px;font-size:20px}
+.logo small{display:block;font-size:10px;font-weight:400;color:var(--dsoft);letter-spacing:1px}
+.menu{display:flex;gap:4px;margin-left:auto}
+.menu a{padding:7px 14px;border-radius:18px;font-size:14px;color:var(--dsoft)}
+.menu a.on,.menu a:hover{background:var(--dtext);color:var(--ink)}
+.nav .login{font-size:14px;color:var(--dsoft);white-space:nowrap}
+
+/* 开头 */
+.hero{position:relative;background:radial-gradient(120% 90% at 80% 20%,#2c3a56 0%,var(--ink) 60%);color:var(--dtext);overflow:hidden}
+.hero .wrap{position:relative;padding:72px 16px 56px;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+.hero h1{font-size:44px;font-weight:900;letter-spacing:4px;line-height:1.3}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lede{margin-top:14px;font-size:16px;color:var(--dsoft);line-height:1.9;max-width:34em}
+.search{margin-top:28px;display:flex;background:#fff;border-radius:3px;overflow:hidden;max-width:620px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.search input{flex:1;min-width:0;border:0;outline:0;padding:15px 16px;font:inherit;font-size:15px;color:var(--text)}
+.search button{border:0;background:var(--seal);color:#fff;padding:0 24px;font-size:15px;font-weight:600}
+.search-meta{display:flex;gap:16px;margin-top:10px;font-size:13px;color:var(--dsoft);max-width:620px}
+.search-meta a{border-bottom:1px dashed var(--dsoft)}
+.search-meta span{margin-left:auto}
+.entries{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:30px;max-width:620px}
+.entry{border:1px solid var(--dline);border-radius:4px;padding:14px 8px;text-align:center;background:rgba(255,255,255,.03);transition:.2s}
+.entry:hover{border-color:var(--gold);background:rgba(212,169,90,.08)}
+.entry b{display:block;font-size:22px;color:var(--gold);margin-bottom:4px}
+.entry span{font-size:13px}
+.hero-art{position:relative;height:330px}
+.hero-art .moon{position:absolute;right:30px;top:0;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,#f4e7c6,#d9bf85 60%,transparent 72%);opacity:.85}
+.stamp-stack{position:absolute;left:10%;top:60px;display:grid;grid-template-columns:repeat(4,64px);gap:10px;transform:rotate(-4deg)}
+.stamp-stack i{font-style:normal;width:64px;height:64px;display:grid;place-items:center;font-size:34px;font-weight:900;color:#f6ead6;background:var(--seal);border-radius:4px;opacity:.9;box-shadow:inset 0 0 0 3px rgba(246,234,214,.3)}
+.stamp-stack i:nth-child(3n){background:#8d2a24;opacity:.75}
+.stamp-stack i:nth-child(4n+1){background:transparent;color:var(--gold);border:2px solid var(--gold);opacity:.7}
+.stats{display:flex;gap:28px;margin-top:22px;font-size:13px;color:var(--dsoft)}
+.stats b{display:block;font-size:24px;color:var(--dtext)}
+
+/* 区块通用 */
+section{padding:56px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.sec-head h2{font-size:28px;font-weight:900;letter-spacing:3px}
+.sec-head p{font-size:14px;color:var(--soft);margin-top:6px}
+.demo{display:inline-block;font-size:12px;color:var(--seal2);border:1px solid rgba(171,47,40,.35);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.tabs{display:flex;gap:6px;justify-content:center;margin-bottom:26px}
+.tabs button{border:0;background:transparent;padding:8px 18px;font-size:15px;color:var(--dsoft);border-bottom:2px solid transparent}
+.tabs button.on{color:var(--dtext);border-color:var(--gold)}
+
+/* 姓氏浏览（深色区） */
+.browse{background:var(--ink);color:var(--dtext)}
+.browse .sec-head p{color:var(--dsoft)}
+.browse .demo{color:var(--gold);border-color:rgba(212,169,90,.4)}
+.browse-grid{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
+.letters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.letters button{width:34px;height:34px;border-radius:50%;border:0;background:var(--ink2);color:var(--dsoft);font-size:13px;font-family:Georgia,serif}
+.letters button.on{background:var(--dtext);color:var(--ink);font-weight:700}
+.letters button:disabled{opacity:.3;cursor:default}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{position:relative;padding:16px 16px 14px;border:1px solid transparent;border-radius:4px;cursor:pointer;transition:.2s;background:rgba(255,255,255,.02)}
+.card:hover,.card.on{border-color:var(--dline);background:var(--ink2)}
+.card .nm{display:flex;align-items:baseline;gap:8px;padding-bottom:8px;border-bottom:1px solid currentColor}
+.card .nm b{font-size:30px;font-weight:900}
+.card .nm span{font-family:Georgia,serif;font-size:14px}
+.card .row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:8px}
+.card .row big{font-size:24px;font-weight:600;color:var(--dtext)}
+.card .row big small{font-size:13px;margin-left:2px}
+.card .row em{font-style:normal;font-size:12px;text-align:right;line-height:1.6}
+.card .film{position:absolute;right:10px;top:10px;font-size:11px;color:#1b2230;background:var(--gold);padding:1px 7px;border-radius:9px}
+.c0{color:#e9e2d2}.c1{color:#e6a24a}.c2{color:#e08a3c}.c3{color:#7cc49a}.c4{color:#d98a8a}.c5{color:#8fb3e0}
+.detail{position:sticky;top:80px;background:var(--card);color:var(--text);border-radius:6px;padding:22px;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+.detail .top{display:flex;gap:14px;align-items:center}
+.detail .seal{width:62px;height:62px;flex:none;display:grid;place-items:center;border:2px solid var(--text);font-size:34px;font-weight:900}
+.detail h3{font-size:22px;font-weight:900}
+.detail .tang{font-size:13px;color:var(--seal2);margin-top:2px}
+.detail p.desc{font-size:14px;line-height:1.85;color:var(--soft);margin:14px 0}
+.detail h4{font-size:14px;font-weight:900;margin:16px 0 8px;padding-left:8px;border-left:3px solid var(--seal)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:13px;background:var(--paper2);padding:3px 9px;border-radius:3px}
+.jp{list-style:none}
+.jp li{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.jp li span{color:var(--soft);white-space:nowrap}
+.detail .acts{display:flex;gap:8px;margin-top:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:3px;padding:10px 16px;font-size:14px;font-weight:600;background:var(--seal);color:#fff}
+.btn.ghost{background:transparent;color:var(--seal2);border:1px solid var(--seal)}
+.detail .acts .btn{flex:1}
+
+/* 时空浏览 */
+.space{display:none}
+.space.on{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.bars .bar{display:grid;grid-template-columns:60px 1fr 50px;align-items:center;gap:10px;font-size:14px;margin:8px 0}
+.bars .bar i{display:block;height:10px;border-radius:5px;background:linear-gradient(90deg,var(--gold),var(--seal))}
+.bars .bar span{color:var(--dsoft);font-family:Georgia,serif;text-align:right}
+.timeline{display:flex;flex-direction:column;gap:10px}
+.timeline div{display:grid;grid-template-columns:70px 1fr;gap:12px;font-size:14px;padding:10px 12px;background:var(--ink2);border-radius:4px}
+.timeline b{color:var(--gold)}
+
+/* 家谱中心 */
+.center{background:var(--paper)}
+.center-grid{display:grid;grid-template-columns:230px 1fr;gap:22px}
+.facets{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:16px;font-size:14px;align-self:start}
+.facets h5{font-size:14px;font-weight:900;margin:14px 0 6px}
+.facets h5:first-child{margin-top:0}
+.facets label{display:flex;justify-content:space-between;padding:3px 0;color:var(--soft);cursor:pointer}
+.facets label:hover{color:var(--seal2)}
+.facets label.on{color:var(--seal2);font-weight:600}
+.table{background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.table .meta{display:flex;justify-content:space-between;padding:12px 16px;font-size:13px;color:var(--soft);border-bottom:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--paper2);text-align:left;font-weight:600;padding:10px 12px;white-space:nowrap}
+td{padding:11px 12px;border-top:1px solid var(--line);vertical-align:top}
+td:first-child{color:var(--seal2);font-weight:600}
+td .src{font-size:12px;color:var(--soft)}
+td .real{font-size:11px;color:#1e6b2e;border:1px solid #9cc7a6;padding:0 5px;border-radius:8px;margin-left:4px;white-space:nowrap}
+
+/* 影片与家族网站 */
+.films{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.film-card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.film-card video{width:100%;aspect-ratio:9/16;display:block;background:#000;object-fit:cover}
+.film-card .poster{aspect-ratio:16/9;background:var(--ink);display:grid;place-items:center;position:relative}
+.film-card .poster b{font-size:72px;font-weight:900;color:#f6ead6}
+.film-card .poster .play{position:absolute;right:12px;bottom:12px;width:40px;height:40px;border-radius:50%;background:var(--seal);display:grid;place-items:center;color:#fff}
+.film-card .txt{padding:14px 16px}
+.film-card h3{font-size:18px;font-weight:900}
+.film-card p{font-size:13px;color:var(--soft);margin-top:6px;line-height:1.7}
+
+/* 服务 */
+.serve{background:var(--paper2)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px}
+.step .no{font-size:12px;letter-spacing:2px;color:var(--seal2)}
+.step h3{font-size:19px;font-weight:900;margin:6px 0}
+.step .price{font-size:18px;font-weight:600;color:var(--seal2)}
+.step p{font-size:13px;color:var(--soft);line-height:1.8;margin-top:8px}
+
+.srcs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.src{display:block;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px;transition:.2s}
+.src:hover{border-color:var(--seal);transform:translateY(-2px)}
+.src .org{font-size:12px;color:var(--soft);letter-spacing:1px}
+.src h3{font-size:17px;font-weight:900;margin:4px 0 6px}
+.src p{font-size:13px;color:var(--soft);line-height:1.7}
+.src .tag{display:inline-block;margin-top:8px;font-size:11px;padding:1px 8px;border-radius:9px;border:1px solid var(--line);color:var(--soft)}
+.src.main{grid-column:span 3;display:flex;gap:20px;align-items:center;background:var(--ink);color:var(--dtext);border-color:var(--ink)}
+.src.main p{color:var(--dsoft)} .src.main .org{color:var(--gold)}
+.src.main .go{margin-left:auto;white-space:nowrap}
+.found{margin-top:26px}
+.found h3{font-size:18px;font-weight:900;margin-bottom:10px}
+.card .go{display:block;margin-top:10px;font-size:12px;color:var(--dsoft)}
+.card:hover .go{color:var(--gold)}
+footer{background:var(--ink);color:var(--dsoft);font-size:13px;padding:36px 0;line-height:1.9}
+footer b{color:var(--dtext)}
+
+@media (max-width:900px){
+  .menu{display:none}
+  .hero .wrap{grid-template-columns:1fr;padding-top:44px}
+  .hero h1{font-size:32px}
+  .hero-art{display:none}
+  .entries{grid-template-columns:repeat(2,1fr)}
+  .browse-grid,.center-grid,.space.on{grid-template-columns:1fr}
+  .detail{position:static}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .films,.steps,.srcs{grid-template-columns:1fr}
+  .src.main{grid-column:auto;flex-direction:column;align-items:flex-start}
+  .src.main .go{margin-left:0}
+  .table{overflow-x:auto}
+  table{min-width:640px}
+  .sec-head{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <a class="logo" href="#"><i>姓</i><span>百家姓 · 四千年<small>家谱检索 · 姓氏影片 · 寻根服务</small></span></a>
+  <div class="menu"><a class="on" href="#">首页</a><a href="#browse">姓氏浏览</a><a href="#center">去哪查家谱</a><a href="#films">姓氏影片</a><a href="#serve">寻根服务</a></div>
+  <a class="login" href="en.html" lang="en">English</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div>
+    <h1>从一部家谱，<br>找到<em>你从哪里来</em></h1>
+    <p class="lede">按姓氏、谱籍地、堂号检索海内外家谱，看你的姓走过的四千年，再把你家这一支接上去。</p>
+    <form class="search" id="q-form"><input id="q" placeholder="输入谱名 / 姓氏 / 谱籍地 / 堂号 / 先祖名人，如：邓 南阳堂 湖南"><button>检索</button></form>
+    <div class="search-meta"><span>检索结果由上海图书馆「中国家谱知识服务平台」提供，将在新窗口打开</span></div>
+    <div class="entries">
+      <a class="entry" href="#films"><b>影</b><span>姓氏影片</span></a>
+      <a class="entry" href="#browse" data-tab="space"><b>迁</b><span>迁徙故事</span></a>
+      <a class="entry" href="#center"><b>查</b><span>去哪查家谱</span></a>
+      <a class="entry" href="#serve"><b>谱</b><span>数字族谱</span></a>
+    </div>
+    <div class="stats"><div><b>10 万+</b>部家谱目录可查（上图平台）</div><div><b>8</b>个免费家谱资源入口</div><div><b>3</b>部姓氏影片</div></div>
+  </div>
+  <div class="hero-art"><div class="moon"></div><div class="stamp-stack" id="stamps"></div></div>
+</div></header>
+
+<section class="browse" id="browse"><div class="wrap">
+  <div class="sec-head">
+    <div><h2>从你的姓开始</h2><p>按拼音首字母找到你的姓，一键去上海图书馆家谱平台查看这个姓的全部家谱。</p></div>
+    <span class="demo">点姓氏卡片 = 去上图查该姓家谱</span>
+  </div>
+  <div class="tabs"><button class="on" data-t="name">姓氏浏览</button><button data-t="space">时空浏览</button></div>
+
+  <div class="browse-grid" id="name-view">
+    <div>
+      <div class="letters" id="letters"></div>
+      <div class="cards" id="cards"></div>
+    </div>
+    <aside class="detail" id="detail"></aside>
+  </div>
+
+  <div class="space" id="space-view">
+    <div><h3 style="font-size:18px;margin-bottom:12px"><span id="sp-name">邓</span>氏 · 迁徙故事</h3><p id="sp-note" style="color:var(--dsoft);font-size:14px;line-height:1.9"></p><a class="btn" id="sp-go" target="_blank" rel="noopener" style="margin-top:14px">去上图看谱籍地分布</a></div>
+    <div><h3 style="font-size:18px;margin-bottom:12px">迁徙时间线</h3><div class="timeline" id="tl"></div></div>
+  </div>
+</div></section>
+
+<section class="center" id="center"><div class="wrap">
+  <div class="sec-head">
+    <div><h2>去哪里查家谱</h2><p>全国图书馆和海外机构公开的家谱资源，都免费可查。我们不存储这些数据，只帮你找到入口；看不懂繁体、找不到你这一支，可以让我们帮你查。</p></div>
+  </div>
+  <div class="srcs" id="srcs"></div>
+  <div class="found">
+    <h3>我们已经查到的家谱（举例）</h3>
+    <div class="table"><table><thead><tr><th>谱名</th><th>姓氏</th><th>谱籍地</th><th>堂号</th><th>撰修时间</th><th>收藏机构</th></tr></thead><tbody id="rows"></tbody></table></div>
+  </div>
+</div></section>
+
+<section id="films"><div class="wrap">
+  <div class="sec-head"><div><h2>姓氏影片</h2><p>左边是一个姓的三千年，右边是同一时刻的世界。评论区打出你的姓，点赞最多的下一个做。</p></div></div>
+  <div class="films">
+    <div class="film-card"><video src="video/deng.mp4" poster="video/deng.jpg" controls playsinline preload="none"></video><div class="txt"><h3>一个姓，四千年</h3><p>一个邓氏家族的 147 代：从商朝受封，到邓绥"只要纸墨"，再到湖南隆回。<a href="https://jinhuadeng.github.io/deng-genealogy/" target="_blank" rel="noopener" style="color:var(--seal2)">看邓氏族谱网站 →</a></p></div></div>
+    <div class="film-card"><video src="video/li.mp4" poster="video/li.jpg" controls playsinline preload="none"></video><div class="txt"><h3>一个姓，一亿人</h3><p>理氏改李、老子、李唐、李白望月——一个姓，一亿人。</p></div></div>
+    <div class="film-card"><video src="video/chen.mp4" poster="video/chen.jpg" controls playsinline preload="none"></video><div class="txt"><h3>一个姓，走遍天下</h3><p>舜帝后裔、玄奘西行、渡海来台、南洋华侨——走得再远，也是一家人。</p></div></div>
+  </div>
+</div></section>
+
+<section class="serve" id="serve"><div class="wrap">
+  <div class="sec-head"><div><h2>把你家这一支接上去</h2><p>从查到一部家谱，到拥有一部属于你家的影片和网站。</p></div></div>
+  <div class="steps">
+    <div class="step"><div class="no">第一步</div><h3>免费寻根检查</h3><div class="price">免费</div><p>告诉我们姓氏、老家和知道的先祖名字，我们去国图、上图和各省图书馆查有没有你这一支的家谱。3 个工作日内回复。</p></div>
+    <div class="step"><div class="no">第二步</div><h3>家谱解读报告</h3><div class="price">¥199 起</div><p>读懂繁体族谱：世系、字辈、迁徙路线，整理成一张清楚的家族传承图。</p></div>
+    <div class="step"><div class="no">第三步</div><h3>家族定制影片</h3><div class="price">¥299–999</div><p>前半段是你的姓的大历史，后半段是你家的迁徙和人名，像邓氏那部一样。</p></div>
+    <div class="step"><div class="no">第四步</div><h3>数字族谱网站</h3><div class="price">¥1999 起</div><p>会"生长"的世系图、树形图、寻根之旅，国内外都能打开，亲人一起续修。</p></div>
+  </div>
+  <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="mailto:csu.djh11@gmail.com?subject=%E5%85%8D%E8%B4%B9%E5%AF%BB%E6%A0%B9%E6%A3%80%E6%9F%A5&body=%E5%A7%93%E6%B0%8F%EF%BC%9A%0A%E8%80%81%E5%AE%B6%EF%BC%88%E7%9C%81%2F%E5%8E%BF%2F%E9%95%87%2F%E6%9D%91%EF%BC%89%EF%BC%9A%0A%E5%A0%82%E5%8F%B7%EF%BC%88%E5%A6%82%E7%9F%A5%E9%81%93%EF%BC%89%EF%BC%9A%0A%E7%9F%A5%E9%81%93%E7%9A%84%E5%85%88%E7%A5%96%E5%90%8D%E5%AD%97%E6%88%96%E5%AD%97%E8%BE%88%EF%BC%9A%0A%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F%EF%BC%9A">开始免费寻根检查（发邮件）</a><a class="btn ghost" href="https://jinhuadeng.github.io/deng-genealogy/" target="_blank" rel="noopener">看邓氏族谱样板</a></div>
+</div></section>
+
+<footer><div class="wrap">
+  <b>百家姓 · 四千年</b>　家谱检索入口 · 姓氏影片 · 寻根服务<br>
+  本站不存储第三方家谱数据。家谱检索跳转至上海图书馆「中国家谱知识服务平台」（jiapu.library.sh.cn）及各收藏机构官方网站，数据与影像版权归原机构所有。<br>
+  "我们已经查到的家谱"为本站在国家图书馆中华寻根网核实的馆藏目录。
+</div></footer>
+
+<script>
+const JP = q => 'https://jiapu.library.sh.cn/genealogyFullSearch?keywords=' + encodeURIComponent(q);
+const SURNAMES = [
+  ['安','an'],['艾','ai'],['敖','ao'],['白','bai'],['包','bao'],['蔡','cai'],['曹','cao'],['陈','chen'],['程','cheng'],['崔','cui'],
+  ['戴','dai'],['邓','deng'],['丁','ding'],['董','dong'],['杜','du'],['范','fan'],['方','fang'],['冯','feng'],['傅','fu'],['高','gao'],
+  ['郭','guo'],['韩','han'],['何','he'],['胡','hu'],['黄','huang'],['江','jiang'],['蒋','jiang'],['金','jin'],['孔','kong'],['李','li'],
+  ['梁','liang'],['林','lin'],['刘','liu'],['卢','lu'],['罗','luo'],['马','ma'],['毛','mao'],['潘','pan'],['彭','peng'],['钱','qian'],
+  ['秦','qin'],['任','ren'],['沈','shen'],['宋','song'],['孙','sun'],['唐','tang'],['田','tian'],['汪','wang'],['王','wang'],['魏','wei'],
+  ['吴','wu'],['夏','xia'],['萧','xiao'],['谢','xie'],['徐','xu'],['许','xu'],['杨','yang'],['叶','ye'],['于','yu'],['袁','yuan'],
+  ['曾','zeng'],['张','zhang'],['赵','zhao'],['郑','zheng'],['钟','zhong'],['周','zhou'],['朱','zhu'],
+];
+const DATA = {};
+SURNAMES.forEach(([c, py], i) => DATA[c] = {c, py, color:'c' + (i % 6)});
+/* 有影片、我们写过故事的三个姓（内容来自本站影片，已核实） */
+Object.assign(DATA['邓'], {film:true, tang:'南阳堂', desc:'商王封曼季于邓，建邓国，子孙以国为氏。东汉邓禹佐光武中兴，后世多称"南阳堂"。',
+  people:['曼季','邓禹','邓绥','邓骘'], route:[['商','曼季受封于邓'],['前678','楚灭邓国，子孙以国为氏'],['东汉','邓禹佐光武中兴，南阳邓氏大兴'],['晋','一支避乱南迁江西泰和'],['元末明初','由江西迁湖广'],['明','落籍宝庆、武冈'],['清','迁居湖南隆回']]});
+Object.assign(DATA['李'], {film:true, tang:'陇西堂', desc:'相传理徵后人以李子活命，改"理"为"李"。老子李耳、唐朝皇族、诗人李白都出自此姓。',
+  people:['李耳（老子）','李广','李世民','李白','李清照','李时珍'], route:[['约前1100','相传理氏改为李氏'],['前2世纪','"飞将军"李广'],['618','李渊建唐'],['元末明初','大批李氏自江西迁入湖广'],['今天','中国一亿多人姓李']]});
+Object.assign(DATA['陈'], {film:true, tang:'颍川堂', desc:'舜帝后裔妫满受封于陈，子孙以国为氏。东汉陈寔德望卓著，天下陈氏多称"颍川堂"。',
+  people:['妫满','陈胜','陈寔','陈霸先','玄奘（俗名陈祎）','陈元光'], route:[['约前1046','妫满受封于陈'],['2世纪','陈寔与颍川陈氏'],['557','陈霸先建陈朝'],['686','陈元光开漳，扎根闽南'],['17世纪末','渡海来台'],['近代','下南洋，遍布海外']]});
+
+/* 本站在国家图书馆中华寻根网核实过的馆藏 */
+const BOOKS = [
+  {t:'鄧氏聯譜初輯六卷', s:'邓', p:'湖南', t2:'南阳堂', y:'民国二十三年（1934）', org:'国家图书馆'},
+  {t:'邵東七井鄧氏大宗三修族譜', s:'邓', p:'湖南邵东', t2:'—', y:'—', org:'国家图书馆'},
+  {t:'湘鄉李氏五修支譜', s:'李', p:'湖南湘乡', t2:'筱溪閣', y:'民国元年（1912）', org:'国家图书馆'},
+  {t:'湘鄉李氏六修支譜', s:'李', p:'湖南湘乡', t2:'—', y:'民国二十九年（1940）', org:'国家图书馆'},
+];
+/* 免费家谱资源入口（来自《家谱数据来源汇总》） */
+const SOURCES = [
+  {main:true, org:'上海图书馆', name:'中国家谱知识服务平台', url:'https://jiapu.library.sh.cn/', d:'家谱目录 10 万余种，可按谱名、姓氏、谱籍地、堂号、先祖名人检索，部分家谱可在线阅读。目录最全，首选。'},
+  {org:'国家图书馆', name:'中华寻根网', url:'http://ouroots.nlc.cn/', d:'国图馆藏家谱目录与影像，看影像需国图读者账号登录。', tag:'需登录看影像'},
+  {org:'国家图书馆', name:'中华古籍资源库', url:'http://read.nlc.cn/thematDataSearch/toGujiIndex', d:'含徽州善本家谱等，免费在线阅读。', tag:'免费阅读'},
+  {org:'湖南图书馆', name:'湖南图书馆家谱数据库', url:'http://www.library.hn.cn/', d:'2025 年上线，原图与识别文字对照阅读；从官网"自建资源"进入。湖南家族首选。', tag:'免费阅读'},
+  {org:'南京图书馆', name:'江苏古籍资源库', url:'https://zggj.jslib.org.cn/#/home', d:'以方志、家谱为主，在线阅读。', tag:'免费阅读'},
+  {org:'安徽省图书馆', name:'安徽家谱数据库', url:'http://ahjp.ahlib.com:8011/', d:'新修家谱全文影像。', tag:'免费阅读'},
+  {org:'台湾"国家图书馆"', name:'臺灣家譜聯合目錄', url:'https://rbook.ncl.edu.tw/NCLSearch/Search/Index/3', d:'台湾地区收藏的家谱目录，适合闽台、海外家族。', tag:'目录'},
+  {org:'FamilySearch', name:'Chinese Jiapu 家谱检索', url:'https://www.familysearch.org/en/chinese/cms/jiapusearch', d:'全球最大的在线中国家谱影像库，免费注册即可查看。海外华人首选。', tag:'免费注册'},
+];
+
+const $ = id => document.getElementById(id);
+/* ---------- 姓氏浏览 ---------- */
+const letters = [...'ABCDEFGHJKLMNOPQRSTWXYZ'];
+const have = new Set(SURNAMES.map(([, py]) => py[0].toUpperCase()));
+let curL = 'D', curS = '邓';
+$('letters').innerHTML = letters.map(l => `<button data-l="${l}" ${have.has(l) ? '' : 'disabled'}>${l}</button>`).join('');
+function renderCards(){
+  document.querySelectorAll('#letters button').forEach(b => b.classList.toggle('on', b.dataset.l === curL));
+  const list = SURNAMES.filter(([, py]) => py[0].toUpperCase() === curL).map(([c]) => DATA[c]);
+  $('cards').innerHTML = list.map(d => `<div class="card ${d.color} ${d.c === curS ? 'on' : ''}" data-c="${d.c}">
+    ${d.film ? '<span class="film">有影片</span>' : ''}
+    <div class="nm"><b>${d.c}</b><span>${d.py}</span></div>
+    <span class="go">${d.tang ? d.tang + ' · ' : ''}去上图查${d.c}氏家谱 →</span></div>`).join('');
+}
+function renderDetail(){
+  const d = DATA[curS];
+  const books = BOOKS.filter(b => b.s === d.c);
+  $('detail').innerHTML = `
+    <div class="top"><div class="seal">${d.c}</div><div><h3>${d.c}氏 <span style="font-family:Georgia;font-weight:400;font-size:15px;color:var(--soft)">${d.py}</span></h3>
+      <div class="tang">${d.tang ? '常见堂号：' + d.tang : '堂号因地因支而异'}</div></div></div>
+    <p class="desc">${d.desc || `想知道${d.c}姓从哪里来、你家这一支修过哪些家谱？点下面的按钮，去上海图书馆家谱平台查看${d.c}氏的全部家谱目录。`}</p>
+    ${d.people ? `<h4>历史名人</h4><div class="chips">${d.people.map(p => `<span>${p}</span>`).join('')}</div>` : ''}
+    ${books.length ? `<h4>我们查到的${d.c}氏家谱</h4><ul class="jp">${books.map(b => `<li>${b.t}<span>${b.p}</span></li>`).join('')}</ul>` : ''}
+    <div class="acts"><a class="btn" href="${JP(d.c)}" target="_blank" rel="noopener">去上图查${d.c}氏家谱</a>${d.film ? `<a class="btn ghost" href="#films">看影片</a>` : `<a class="btn ghost" href="#serve">让我们帮你查</a>`}</div>`;
+  renderSpace();
+}
+$('letters').onclick = e => { const b = e.target.closest('button'); if (!b || b.disabled) return; curL = b.dataset.l;
+  curS = SURNAMES.find(([, py]) => py[0].toUpperCase() === curL)[0]; renderCards(); renderDetail(); };
+$('cards').onclick = e => { const c = e.target.closest('.card'); if (!c) return; curS = c.dataset.c; renderCards(); renderDetail(); };
+
+/* ---------- 迁徙故事 ---------- */
+function renderSpace(){
+  const d = DATA[curS]; $('sp-name').textContent = d.c;
+  $('sp-note').textContent = d.route ? `${d.c}姓的主要迁徙脉络，取自本站《${d.c === '邓' ? '一个姓，四千年' : d.c === '李' ? '一个姓，一亿人' : '一个姓，走遍天下'}》。各支族的具体谱籍地，可在上图平台的地图检索中查看。`
+    : `${d.c}姓的迁徙故事还在整理中。各支族的谱籍地分布，可以先去上图平台的地图检索查看；也可以在评论区投票，让我们下一部影片就做${d.c}姓。`;
+  $('sp-go').href = JP(d.c);
+  $('tl').innerHTML = (d.route || [['—', '暂无，欢迎投票']]).map(([y, x]) => `<div><b>${y}</b>${x}</div>`).join('');
+}
+function showTab(t){
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
+  $('name-view').style.display = t === 'name' ? '' : 'none';
+  $('space-view').classList.toggle('on', t === 'space');
+}
+document.querySelector('.tabs').onclick = e => { const b = e.target.closest('button'); if (b) showTab(b.dataset.t); };
+document.querySelectorAll('[data-tab]').forEach(a => a.addEventListener('click', () => showTab(a.dataset.tab)));
+
+/* ---------- 检索：跳转上图 ---------- */
+$('q-form').onsubmit = e => { e.preventDefault(); const q = $('q').value.trim(); if (!q) { $('q').focus(); return; }
+  window.open(JP(q), '_blank', 'noopener');
+  const s = SURNAMES.find(([c]) => q.includes(c)); if (s){ curS = s[0]; curL = s[1][0].toUpperCase(); renderCards(); renderDetail(); } };
+
+/* ---------- 资源入口 ---------- */
+$('srcs').innerHTML = SOURCES.map(s => `<a class="src ${s.main ? 'main' : ''}" href="${s.url}" target="_blank" rel="noopener">
+  <div><div class="org">${s.org}</div><h3>${s.name}</h3><p>${s.d}</p>${s.tag ? `<span class="tag">${s.tag}</span>` : ''}</div>
+  ${s.main ? '<span class="btn go">打开平台 →</span>' : ''}</a>`).join('');
+$('rows').innerHTML = BOOKS.map(b => `<tr><td>${b.t}</td><td>${b.s}</td><td>${b.p}</td><td>${b.t2}</td><td>${b.y}</td><td>${b.org}</td></tr>`).join('');
+
+$('stamps').innerHTML = ['邓','李','陈','王','张','刘','黄','林','吴','周','杨','赵'].map(c => `<i>${c}</i>`).join('');
+renderCards(); renderDetail();
+</script>
+</body>
+</html>

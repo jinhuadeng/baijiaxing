@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>One Name · Chinese Roots — find your Chinese family book</title>
+<meta name="description" content="Short films on the 3,000-year history of Chinese surnames, and where to search for your family's clan book (zupu). Chen, Chan, Tan, Lee, Wong and more.">
+<link rel="canonical" href="https://jinhuadeng.github.io/baijiaxing/en.html">
+<meta property="og:title" content="Every Chinese family has a book. Find yours.">
+<meta property="og:image" content="https://jinhuadeng.github.io/baijiaxing/video/chen.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+SC:wght@400;600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2230; --ink2:#252e3f; --paper:#f4ede0; --paper2:#ebe2cf; --line:#d9cdb4; --text:#231d18; --soft:#6a5e52;
+  --seal:#ab2f28; --seal2:#7f211c; --gold:#d4a95a; --jade:#5f9c7a; --card:#fbf7ee;
+  --dtext:#e9e2d2; --dsoft:#9aa3b2; --dline:#36415a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Serif SC","Songti SC",serif;background:var(--paper);color:var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+button{font:inherit;cursor:pointer}
+
+/* 顶栏 */
+.nav{position:sticky;top:0;z-index:20;background:rgba(27,34,48,.96);backdrop-filter:blur(6px);color:var(--dtext);border-bottom:1px solid var(--dline)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:62px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;letter-spacing:2px;white-space:nowrap}
+.logo i{font-style:normal;width:34px;height:34px;display:grid;place-items:center;background:var(--seal);color:#f6ead6;border-radius:4px;font-size:20px}
+.logo small{display:block;font-size:10px;font-weight:400;color:var(--dsoft);letter-spacing:1px}
+.menu{display:flex;gap:4px;margin-left:auto}
+.menu a{padding:7px 14px;border-radius:18px;font-size:14px;color:var(--dsoft)}
+.menu a.on,.menu a:hover{background:var(--dtext);color:var(--ink)}
+.nav .login{font-size:14px;color:var(--dsoft);white-space:nowrap}
+
+/* 开头 */
+.hero{position:relative;background:radial-gradient(120% 90% at 80% 20%,#2c3a56 0%,var(--ink) 60%);color:var(--dtext);overflow:hidden}
+.hero .wrap{position:relative;padding:72px 16px 56px;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+.hero h1{font-size:44px;font-weight:900;letter-spacing:4px;line-height:1.3}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lede{margin-top:14px;font-size:16px;color:var(--dsoft);line-height:1.9;max-width:34em}
+.search{margin-top:28px;display:flex;background:#fff;border-radius:3px;overflow:hidden;max-width:620px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.search input{flex:1;min-width:0;border:0;outline:0;padding:15px 16px;font:inherit;font-size:15px;color:var(--text)}
+.search button{border:0;background:var(--seal);color:#fff;padding:0 24px;font-size:15px;font-weight:600}
+.search-meta{display:flex;gap:16px;margin-top:10px;font-size:13px;color:var(--dsoft);max-width:620px}
+.search-meta a{border-bottom:1px dashed var(--dsoft)}
+.search-meta span{margin-left:auto}
+.entries{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:30px;max-width:620px}
+.entry{border:1px solid var(--dline);border-radius:4px;padding:14px 8px;text-align:center;background:rgba(255,255,255,.03);transition:.2s}
+.entry:hover{border-color:var(--gold);background:rgba(212,169,90,.08)}
+.entry b{display:block;font-size:22px;color:var(--gold);margin-bottom:4px}
+.entry span{font-size:13px}
+.hero-art{position:relative;height:330px}
+.hero-art .moon{position:absolute;right:30px;top:0;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,#f4e7c6,#d9bf85 60%,transparent 72%);opacity:.85}
+.stamp-stack{position:absolute;left:10%;top:60px;display:grid;grid-template-columns:repeat(4,64px);gap:10px;transform:rotate(-4deg)}
+.stamp-stack i{font-style:normal;width:64px;height:64px;display:grid;place-items:center;font-size:34px;font-weight:900;color:#f6ead6;background:var(--seal);border-radius:4px;opacity:.9;box-shadow:inset 0 0 0 3px rgba(246,234,214,.3)}
+.stamp-stack i:nth-child(3n){background:#8d2a24;opacity:.75}
+.stamp-stack i:nth-child(4n+1){background:transparent;color:var(--gold);border:2px solid var(--gold);opacity:.7}
+.stats{display:flex;gap:28px;margin-top:22px;font-size:13px;color:var(--dsoft)}
+.stats b{display:block;font-size:24px;color:var(--dtext)}
+
+/* 区块通用 */
+section{padding:56px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.sec-head h2{font-size:28px;font-weight:900;letter-spacing:3px}
+.sec-head p{font-size:14px;color:var(--soft);margin-top:6px}
+.demo{display:inline-block;font-size:12px;color:var(--seal2);border:1px solid rgba(171,47,40,.35);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.tabs{display:flex;gap:6px;justify-content:center;margin-bottom:26px}
+.tabs button{border:0;background:transparent;padding:8px 18px;font-size:15px;color:var(--dsoft);border-bottom:2px solid transparent}
+.tabs button.on{color:var(--dtext);border-color:var(--gold)}
+
+/* 姓氏浏览（深色区） */
+.browse{background:var(--ink);color:var(--dtext)}
+.browse .sec-head p{color:var(--dsoft)}
+.browse .demo{color:var(--gold);border-color:rgba(212,169,90,.4)}
+.browse-grid{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
+.letters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.letters button{width:34px;height:34px;border-radius:50%;border:0;background:var(--ink2);color:var(--dsoft);font-size:13px;font-family:Georgia,serif}
+.letters button.on{background:var(--dtext);color:var(--ink);font-weight:700}
+.letters button:disabled{opacity:.3;cursor:default}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{position:relative;padding:16px 16px 14px;border:1px solid transparent;border-radius:4px;cursor:pointer;transition:.2s;background:rgba(255,255,255,.02)}
+.card:hover,.card.on{border-color:var(--dline);background:var(--ink2)}
+.card .nm{display:flex;align-items:baseline;gap:8px;padding-bottom:8px;border-bottom:1px solid currentColor}
+.card .nm b{font-size:30px;font-weight:900}
+.card .nm span{font-family:Georgia,serif;font-size:14px}
+.card .row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:8px}
+.card .row big{font-size:24px;font-weight:600;color:var(--dtext)}
+.card .row big small{font-size:13px;margin-left:2px}
+.card .row em{font-style:normal;font-size:12px;text-align:right;line-height:1.6}
+.card .film{position:absolute;right:10px;top:10px;font-size:11px;color:#1b2230;background:var(--gold);padding:1px 7px;border-radius:9px}
+.c0{color:#e9e2d2}.c1{color:#e6a24a}.c2{color:#e08a3c}.c3{color:#7cc49a}.c4{color:#d98a8a}.c5{color:#8fb3e0}
+.detail{position:sticky;top:80px;background:var(--card);color:var(--text);border-radius:6px;padding:22px;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+.detail .top{display:flex;gap:14px;align-items:center}
+.detail .seal{width:62px;height:62px;flex:none;display:grid;place-items:center;border:2px solid var(--text);font-size:34px;font-weight:900}
+.detail h3{font-size:22px;font-weight:900}
+.detail .tang{font-size:13px;color:var(--seal2);margin-top:2px}
+.detail p.desc{font-size:14px;line-height:1.85;color:var(--soft);margin:14px 0}
+.detail h4{font-size:14px;font-weight:900;margin:16px 0 8px;padding-left:8px;border-left:3px solid var(--seal)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:13px;background:var(--paper2);padding:3px 9px;border-radius:3px}
+.jp{list-style:none}
+.jp li{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.jp li span{color:var(--soft);white-space:nowrap}
+.detail .acts{display:flex;gap:8px;margin-top:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:3px;padding:10px 16px;font-size:14px;font-weight:600;background:var(--seal);color:#fff}
+.btn.ghost{background:transparent;color:var(--seal2);border:1px solid var(--seal)}
+.detail .acts .btn{flex:1}
+
+/* 时空浏览 */
+.space{display:none}
+.space.on{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.bars .bar{display:grid;grid-template-columns:60px 1fr 50px;align-items:center;gap:10px;font-size:14px;margin:8px 0}
+.bars .bar i{display:block;height:10px;border-radius:5px;background:linear-gradient(90deg,var(--gold),var(--seal))}
+.bars .bar span{color:var(--dsoft);font-family:Georgia,serif;text-align:right}
+.timeline{display:flex;flex-direction:column;gap:10px}
+.timeline div{display:grid;grid-template-columns:70px 1fr;gap:12px;font-size:14px;padding:10px 12px;background:var(--ink2);border-radius:4px}
+.timeline b{color:var(--gold)}
+
+/* 家谱中心 */
+.center{background:var(--paper)}
+.center-grid{display:grid;grid-template-columns:230px 1fr;gap:22px}
+.facets{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:16px;font-size:14px;align-self:start}
+.facets h5{font-size:14px;font-weight:900;margin:14px 0 6px}
+.facets h5:first-child{margin-top:0}
+.facets label{display:flex;justify-content:space-between;padding:3px 0;color:var(--soft);cursor:pointer}
+.facets label:hover{color:var(--seal2)}
+.facets label.on{color:var(--seal2);font-weight:600}
+.table{background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.table .meta{display:flex;justify-content:space-between;padding:12px 16px;font-size:13px;color:var(--soft);border-bottom:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--paper2);text-align:left;font-weight:600;padding:10px 12px;white-space:nowrap}
+td{padding:11px 12px;border-top:1px solid var(--line);vertical-align:top}
+td:first-child{color:var(--seal2);font-weight:600}
+td .src{font-size:12px;color:var(--soft)}
+td .real{font-size:11px;color:#1e6b2e;border:1px solid #9cc7a6;padding:0 5px;border-radius:8px;margin-left:4px;white-space:nowrap}
+
+/* 影片与家族网站 */
+.films{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.film-card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.film-card video{width:100%;aspect-ratio:9/16;display:block;background:#000;object-fit:cover}
+.film-card .poster{aspect-ratio:16/9;background:var(--ink);display:grid;place-items:center;position:relative}
+.film-card .poster b{font-size:72px;font-weight:900;color:#f6ead6}
+.film-card .poster .play{position:absolute;right:12px;bottom:12px;width:40px;height:40px;border-radius:50%;background:var(--seal);display:grid;place-items:center;color:#fff}
+.film-card .txt{padding:14px 16px}
+.film-card h3{font-size:18px;font-weight:900}
+.film-card p{font-size:13px;color:var(--soft);margin-top:6px;line-height:1.7}
+
+/* 服务 */
+.serve{background:var(--paper2)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px}
+.step .no{font-size:12px;letter-spacing:2px;color:var(--seal2)}
+.step h3{font-size:19px;font-weight:900;margin:6px 0}
+.step .price{font-size:18px;font-weight:600;color:var(--seal2)}
+.step p{font-size:13px;color:var(--soft);line-height:1.8;margin-top:8px}
+
+.srcs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.src{display:block;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px;transition:.2s}
+.src:hover{border-color:var(--seal);transform:translateY(-2px)}
+.src .org{font-size:12px;color:var(--soft);letter-spacing:1px}
+.src h3{font-size:17px;font-weight:900;margin:4px 0 6px}
+.src p{font-size:13px;color:var(--soft);line-height:1.7}
+.src .tag{display:inline-block;margin-top:8px;font-size:11px;padding:1px 8px;border-radius:9px;border:1px solid var(--line);color:var(--soft)}
+.src.main{grid-column:span 3;display:flex;gap:20px;align-items:center;background:var(--ink);color:var(--dtext);border-color:var(--ink)}
+.src.main p{color:var(--dsoft)} .src.main .org{color:var(--gold)}
+.src.main .go{margin-left:auto;white-space:nowrap}
+.found{margin-top:26px}
+.found h3{font-size:18px;font-weight:900;margin-bottom:10px}
+.card .go{display:block;margin-top:10px;font-size:12px;color:var(--dsoft)}
+.card:hover .go{color:var(--gold)}
+footer{background:var(--ink);color:var(--dsoft);font-size:13px;padding:36px 0;line-height:1.9}
+footer b{color:var(--dtext)}
+
+@media (max-width:900px){
+  .menu{display:none}
+  .hero .wrap{grid-template-columns:1fr;padding-top:44px}
+  .hero h1{font-size:32px}
+  .hero-art{display:none}
+  .entries{grid-template-columns:repeat(2,1fr)}
+  .browse-grid,.center-grid,.space.on{grid-template-columns:1fr}
+  .detail{position:static}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .films,.steps,.srcs{grid-template-columns:1fr}
+  .src.main{grid-column:auto;flex-direction:column;align-items:flex-start}
+  .src.main .go{margin-left:0}
+  .table{overflow-x:auto}
+  table{min-width:640px}
+  .sec-head{flex-direction:column;align-items:flex-start}
+}
+body{font-family:"EB Garamond",Georgia,"Noto Serif SC",serif}
+.hero h1{letter-spacing:0;line-height:1.15}
+.sec-head h2{letter-spacing:0}
+.card .go{font-size:13px}
+.logo{letter-spacing:.5px}
+.step .no{letter-spacing:1px}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <a class="logo" href="#"><i>姓</i><span>One Name · Chinese Roots<small>Surname films · Clan-book search · Roots research</small></span></a>
+  <div class="menu"><a class="on" href="#">Home</a><a href="#browse">Surnames</a><a href="#center">Find records</a><a href="#films">Films</a><a href="#serve">Services</a></div>
+  <a class="login" href="./" lang="zh-CN">中文</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div>
+    <h1>Every Chinese family<br>has a book.<br><em>Find yours.</em></h1>
+    <p class="lede">Most Chinese clans kept a <i>zupu</i> 族谱 — a family book recording every generation. Tens of thousands survive in libraries in China and abroad. Start with your surname.</p>
+    <form class="search" id="q-form"><input id="q" placeholder="Your surname — e.g. Chen, Tan, Lee, Wong — or 陈 / 李"><button>Search</button></form>
+    <div class="search-meta"><span>Results open on the Shanghai Library's Chinese Genealogy platform (in Chinese) — tip: the Chinese character works best</span></div>
+    <div class="entries">
+      <a class="entry" href="#films"><b>影</b><span>Surname films</span></a>
+      <a class="entry" href="#browse" data-tab="space"><b>迁</b><span>Migration stories</span></a>
+      <a class="entry" href="#center"><b>查</b><span>Where to search</span></a>
+      <a class="entry" href="#serve"><b>谱</b><span>Family websites</span></a>
+    </div>
+    <div class="stats"><div><b>100,000+</b>clan books catalogued (Shanghai Library)</div><div><b>65,000+</b>digitised on FamilySearch</div><div><b>3</b>surname films</div></div>
+  </div>
+  <div class="hero-art"><div class="moon"></div><div class="stamp-stack" id="stamps"></div></div>
+</div></header>
+
+<section class="browse" id="browse"><div class="wrap">
+  <div class="sec-head">
+    <div><h2>Start with your surname</h2><p>Find your name by its first letter. Overseas spellings are shown too — Chan, Tan and Tran can all be 陈.</p></div>
+    <span class="demo">Click a card to see the Chinese character and where to search</span>
+  </div>
+  <div class="tabs"><button class="on" data-t="name">Surnames</button><button data-t="space">Migration stories</button></div>
+  <div class="browse-grid" id="name-view">
+    <div><div class="letters" id="letters"></div><div class="cards" id="cards"></div></div>
+    <aside class="detail" id="detail"></aside>
+  </div>
+  <div class="space" id="space-view">
+    <div><h3 style="font-size:18px;margin-bottom:12px">The <span id="sp-name">Deng</span> family · migration</h3><p id="sp-note" style="color:var(--dsoft);font-size:14px;line-height:1.9"></p><a class="btn" id="sp-go" target="_blank" rel="noopener" style="margin-top:14px">Search this name's clan books</a></div>
+    <div><h3 style="font-size:18px;margin-bottom:12px">Timeline</h3><div class="timeline" id="tl"></div></div>
+  </div>
+</div></section>
+
+<section class="center" id="center"><div class="wrap">
+  <div class="sec-head">
+    <div><h2>Where to search for Chinese family records</h2><p>All of these are free to search. We don't copy or store their records — we just point you to the right door. Can't read Chinese, or can't find your branch? Ask us to look.</p></div>
+  </div>
+  <div class="srcs" id="srcs"></div>
+  <div class="found">
+    <h3>Clan books we have already located (examples)</h3>
+    <div class="table"><table><thead><tr><th>Title</th><th>Surname</th><th>Place</th><th>Hall name</th><th>Compiled</th><th>Held by</th></tr></thead><tbody id="rows"></tbody></table></div>
+  </div>
+</div></section>
+
+<section id="films"><div class="wrap">
+  <div class="sec-head"><div><h2>Surname films</h2><p>On the left, one name through three thousand years of Chinese history. On the right, what the rest of the world was doing at the same moment.</p></div></div>
+  <div class="films">
+    <div class="film-card"><video src="video/en/deng.mp4" poster="video/en/deng.jpg" controls playsinline preload="none"></video><div class="txt"><h3>One Name. Four Thousand Years.</h3><p>One real Deng family across 147 generations — from a Shang-dynasty fief to Hunan today. <a href="https://jinhuadeng.github.io/deng-genealogy/" target="_blank" rel="noopener" style="color:var(--seal2)">See their family website →</a></p></div></div>
+    <div class="film-card"><video src="video/en/li.mp4" poster="video/en/li.jpg" controls playsinline preload="none"></video><div class="txt"><h3>One Name. A Hundred Million People.</h3><p>Li, Lee, Lý — Laozi, the Tang emperors and the poet Li Bai.</p></div></div>
+    <div class="film-card"><video src="video/en/chen.mp4" poster="video/en/chen.jpg" controls playsinline preload="none"></video><div class="txt"><h3>One Name. Across the World.</h3><p>Chen, Chan, Tan, Tran — from Emperor Shun's heirs to the monk Xuanzang and the overseas Chinese.</p></div></div>
+  </div>
+</div></section>
+
+<section class="serve" id="serve"><div class="wrap">
+  <div class="sec-head"><div><h2>From your surname to your family</h2><p>No Chinese required. We search the archives in China and explain everything in English.</p></div></div>
+  <div class="steps">
+    <div class="step"><div class="no">STEP 1</div><h3>Free roots check</h3><div class="price">Free</div><p>Tell us your surname and anything you know about where the family came from. We check the national and provincial library catalogues and reply within 3 working days.</p></div>
+    <div class="step"><div class="no">STEP 2</div><h3>Clan book report</h3><div class="price">from $149</div><p>We locate and read your family's zupu: your branch, migration route and generation names, translated into English.</p></div>
+    <div class="step"><div class="no">STEP 3</div><h3>Your family film</h3><div class="price">from $790</div><p>A film like the ones above — your surname's history, then your own family's journey — with a bilingual family website.</p></div>
+    <div class="step"><div class="no">ON REQUEST</div><h3>Roots trip</h3><div class="price">Quote</div><p>Field research and a guided visit to your ancestral village can be arranged once we have found it.</p></div>
+  </div>
+  <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="https://jinhuadeng.github.io/one-name/#start" target="_blank" rel="noopener">Start a free roots check</a><a class="btn ghost" href="https://jinhuadeng.github.io/deng-genealogy/" target="_blank" rel="noopener">See an example family website</a></div>
+</div></section>
+
+<footer><div class="wrap">
+  <b>One Name · Chinese Roots</b>　Surname films · clan-book search · roots research<br>
+  We do not store third-party genealogy records. Searches link to the Shanghai Library's Chinese Genealogy Knowledge Service Platform (jiapu.library.sh.cn), FamilySearch and the official sites of other holding institutions; all records and images belong to them.<br>
+  "Clan books we have already located" were verified in the National Library of China's catalogue.
+</div></footer>
+
+<script>
+const JP = q => 'https://jiapu.library.sh.cn/genealogyFullSearch?keywords=' + encodeURIComponent(q);
+const FS = 'https://www.familysearch.org/en/chinese/cms/jiapusearch';
+/* [汉字, 拼音, 海外常见拼法] */
+const SURNAMES = [
+  ['安','An',''],['蔡','Cai','Choi, Chua, Tsai'],['曹','Cao','Tso'],['陈','Chen','Chan, Tan, Chin, Tran'],['程','Cheng','Ching'],
+  ['邓','Deng','Tang, Teng'],['杜','Du','To'],['方','Fang','Fong, Hong'],['冯','Feng','Fung'],['高','Gao','Ko, Kao'],['郭','Guo','Kwok, Quek'],
+  ['何','He','Ho'],['胡','Hu','Wu, Woo'],['黄','Huang','Wong, Ng, Ong'],['江','Jiang','Kong'],['李','Li','Lee, Lí, Lý'],['梁','Liang','Leung'],
+  ['林','Lin','Lim, Lam'],['刘','Liu','Lau, Low'],['卢','Lu','Lo, Lou'],['罗','Luo','Law, Lo'],['马','Ma','Mah'],['潘','Pan','Poon, Phua'],
+  ['孙','Sun','Suen'],['唐','Tang','Tong'],['王','Wang','Wong, Ong'],['吴','Wu','Ng, Woo, Goh'],['萧','Xiao','Siu, Seow'],['谢','Xie','Tse, Chia'],
+  ['徐','Xu','Tsui, Chee'],['许','Xu','Hui, Koh'],['杨','Yang','Yeung, Yeo'],['叶','Ye','Yip, Yap'],['曾','Zeng','Tsang'],['张','Zhang','Cheung, Chang, Teo'],
+  ['郑','Zheng','Cheng, Tay'],['钟','Zhong','Chung'],['周','Zhou','Chow, Chew'],['朱','Zhu','Chu, Choo'],
+];
+const DATA = {};
+SURNAMES.forEach(([c, py, alt], i) => DATA[c] = {c, py, alt, color:'c' + (i % 6)});
+Object.assign(DATA['邓'], {film:true, tang:'Nanyang Hall 南阳堂', desc:'A Shang king granted his uncle Man Ji the land of Deng; his descendants took its name. In the Eastern Han, Deng Yu helped restore the dynasty, and most Deng clans still call themselves the Nanyang Hall.',
+  people:['Man Ji','Deng Yu','Empress Deng Sui'], route:[['c. 1250 BC','Man Ji is granted the land of Deng'],['678 BC','The state of Deng falls; the name survives'],['AD 25','Deng Yu helps restore the Han'],['4th c.','A branch flees south to Taihe, Jiangxi'],['1368','Migration from Jiangxi to Hunan'],['Qing','Settles in Longhui, Hunan']]});
+Object.assign(DATA['李'], {film:true, tang:'Longxi Hall 陇西堂', desc:'Legend says a fugitive family survived on wild plums (li 李) and took the plum as their name. Laozi, the Tang emperors and the poet Li Bai all bore it. Over 100 million people in China are named Li today.',
+  people:['Laozi','Li Guang','Emperor Taizong','Li Bai','Li Qingzhao','Li Shizhen'], route:[['c. 1100 BC','Legend: the Li 理 family becomes Li 李'],['2nd c. BC','Li Guang, the Flying General'],['618','Li Yuan founds the Tang dynasty'],['1368','Great migration from Jiangxi to Hunan'],['Today','Lee, Lý and 이 around the world']]});
+Object.assign(DATA['陈'], {film:true, tang:'Yingchuan Hall 颍川堂', desc:'Descendants of the sage-emperor Shun were granted the land of Chen around 1046 BC. The largest name in Fujian, Guangdong and Taiwan — Chan in Hong Kong, Tan in Singapore and Malaysia, Trần in Vietnam.',
+  people:['Gui Man','Chen Sheng','Chen Shi','Xuanzang (born Chen Yi)','Chen Yuanguang'], route:[['c. 1046 BC','Gui Man is granted the land of Chen'],['2nd c.','Chen Shi and the Yingchuan Chens'],['629','Xuanzang (born Chen) walks to India'],['686','Chen Yuanguang founds Zhangzhou, Fujian'],['1600s–1900s','Across the sea to Taiwan and Southeast Asia']]});
+
+const BOOKS = [
+  {t:'鄧氏聯譜初輯 Deng Clan Joint Genealogy', s:'Deng 邓', p:'Hunan', h:'Nanyang 南阳堂', y:'1934', org:'National Library of China'},
+  {t:'邵東七井鄧氏大宗三修族譜 Deng of Qijing, Shaodong', s:'Deng 邓', p:'Shaodong, Hunan', h:'—', y:'—', org:'National Library of China'},
+  {t:'湘鄉李氏五修支譜 Li of Xiangxiang, 5th edition', s:'Li 李', p:'Xiangxiang, Hunan', h:'筱溪閣', y:'1912', org:'National Library of China'},
+  {t:'湘鄉李氏六修支譜 Li of Xiangxiang, 6th edition', s:'Li 李', p:'Xiangxiang, Hunan', h:'—', y:'1940', org:'National Library of China'},
+];
+const SOURCES = [
+  {main:true, org:'FamilySearch', name:'Chinese Jiapu Search', url:FS, d:'The largest online collection of Chinese clan books — 65,000+ digitised. English interface; free account required. The best place to start from abroad.'},
+  {org:'Shanghai Library', name:'Chinese Genealogy Knowledge Service', url:'https://jiapu.library.sh.cn/', d:'The most complete catalogue — 100,000+ clan books, searchable by surname, place and hall name. Chinese only.', tag:'Chinese'},
+  {org:'National Library of China', name:'Ouroots 中华寻根网', url:'http://ouroots.nlc.cn/', d:'Catalogue and scans of the national collection; viewing scans needs a free library account.', tag:'Chinese · login'},
+  {org:'National Central Library, Taipei', name:'Taiwan Genealogy Union Catalogue', url:'https://rbook.ncl.edu.tw/NCLSearch/Search/Index/3', d:'Clan books held in Taiwan — useful for Fujian and Taiwanese families.', tag:'Chinese'},
+  {org:'Hunan Library', name:'Hunan Genealogy Database', url:'http://www.library.hn.cn/', d:'Scanned clan books with searchable text, launched 2025 — for families from Hunan.', tag:'Chinese'},
+  {org:'Library of Congress', name:'Chinese Rare Books', url:'https://www.loc.gov/collections/chinese-rare-books/', d:'Rare books, gazetteers and maps — background for your ancestors\' home region.', tag:'English'},
+];
+
+const $ = id => document.getElementById(id);
+const letters = [...'ABCDEFGHJKLMNOPQRSTWXYZ'];
+const have = new Set(SURNAMES.map(([, py]) => py[0]));
+let curL = 'C', curS = '陈';
+$('letters').innerHTML = letters.map(l => `<button data-l="${l}" ${have.has(l) ? '' : 'disabled'}>${l}</button>`).join('');
+function renderCards(){
+  document.querySelectorAll('#letters button').forEach(b => b.classList.toggle('on', b.dataset.l === curL));
+  const list = SURNAMES.filter(([, py]) => py[0] === curL).map(([c]) => DATA[c]);
+  $('cards').innerHTML = list.map(d => `<div class="card ${d.color} ${d.c === curS ? 'on' : ''}" data-c="${d.c}">
+    ${d.film ? '<span class="film">Film</span>' : ''}
+    <div class="nm"><b>${d.c}</b><span>${d.py}</span></div>
+    <span class="go">${d.alt ? 'Also: ' + d.alt : '&nbsp;'}</span></div>`).join('');
+}
+function renderDetail(){
+  const d = DATA[curS];
+  const books = BOOKS.filter(b => b.s.endsWith(d.c));
+  $('detail').innerHTML = `
+    <div class="top"><div class="seal">${d.c}</div><div><h3>${d.py} <span style="font-weight:400;font-size:15px;color:var(--soft)">${d.alt ? '· ' + d.alt : ''}</span></h3>
+      <div class="tang">${d.tang ? 'Clan hall: ' + d.tang : 'Hall names vary by branch'}</div></div></div>
+    <p class="desc">${d.desc || `Write it as <b>${d.c}</b> when you search Chinese catalogues. Search the Shanghai Library catalogue for every ${d.py} clan book, or ask us to look for your branch.`}</p>
+    ${d.people ? `<h4>Famous bearers</h4><div class="chips">${d.people.map(p => `<span>${p}</span>`).join('')}</div>` : ''}
+    ${books.length ? `<h4>Clan books we've located</h4><ul class="jp">${books.map(b => `<li>${b.t.split(' ')[0]}<span>${b.p}</span></li>`).join('')}</ul>` : ''}
+    <div class="acts"><a class="btn" href="${JP(d.c)}" target="_blank" rel="noopener">Search ${d.c} clan books</a><a class="btn ghost" href="https://jinhuadeng.github.io/one-name/#start" target="_blank" rel="noopener">Ask us to look</a></div>`;
+  renderSpace();
+}
+$('letters').onclick = e => { const b = e.target.closest('button'); if (!b || b.disabled) return; curL = b.dataset.l;
+  curS = SURNAMES.find(([, py]) => py[0] === curL)[0]; renderCards(); renderDetail(); };
+$('cards').onclick = e => { const c = e.target.closest('.card'); if (!c) return; curS = c.dataset.c; renderCards(); renderDetail(); };
+function renderSpace(){
+  const d = DATA[curS]; $('sp-name').textContent = d.py;
+  $('sp-note').textContent = d.route ? `The main migration of the ${d.py} name, from our film. Where each branch settled is recorded in its clan book.`
+    : `We haven't told the ${d.py} story yet. Comment your surname under our videos — the most-requested name gets the next film.`;
+  $('sp-go').href = JP(d.c);
+  $('tl').innerHTML = (d.route || [['—', 'Coming soon']]).map(([y, x]) => `<div><b>${y}</b>${x}</div>`).join('');
+}
+function showTab(t){
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
+  $('name-view').style.display = t === 'name' ? '' : 'none';
+  $('space-view').classList.toggle('on', t === 'space');
+}
+document.querySelector('.tabs').onclick = e => { const b = e.target.closest('button'); if (b) showTab(b.dataset.t); };
+document.querySelectorAll('[data-tab]').forEach(a => a.addEventListener('click', () => showTab(a.dataset.tab)));
+
+/* 检索：输入汉字直接查；输入拼法先换成汉字 */
+$('q-form').onsubmit = e => {
+  e.preventDefault(); const q = $('q').value.trim(); if (!q){ $('q').focus(); return; }
+  if (/[一-鿿]/.test(q)){ window.open(JP(q), '_blank', 'noopener'); const s = SURNAMES.find(([c]) => q.includes(c)); if (s){ curS = s[0]; curL = s[1][0]; renderCards(); renderDetail(); } return; }
+  const w = q.toLowerCase().replace(/[^a-z]/g, '');
+  const hits = SURNAMES.filter(([, py, alt]) => [py, ...alt.split(',')].some(x => x.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '') === w));
+  if (!hits.length){ window.open(FS, '_blank', 'noopener'); return; }
+  curS = hits[0][0]; curL = hits[0][1][0]; renderCards(); renderDetail();
+  if (hits.length > 1){ $('detail').querySelector('.desc').insertAdjacentHTML('afterbegin', `<b style="color:var(--seal2)">"${q}" can be ${hits.map(h => h[0] + ' (' + h[1] + ')').join(' or ')}.</b> `); }
+  location.hash = 'browse';
+};
+
+$('srcs').innerHTML = SOURCES.map(s => `<a class="src ${s.main ? 'main' : ''}" href="${s.url}" target="_blank" rel="noopener">
+  <div><div class="org">${s.org}</div><h3>${s.name}</h3><p>${s.d}</p>${s.tag ? `<span class="tag">${s.tag}</span>` : ''}</div>
+  ${s.main ? '<span class="btn go">Open FamilySearch →</span>' : ''}</a>`).join('');
+$('rows').innerHTML = BOOKS.map(b => `<tr><td>${b.t}</td><td>${b.s}</td><td>${b.p}</td><td>${b.h}</td><td>${b.y}</td><td>${b.org}</td></tr>`).join('');
+$('stamps').innerHTML = ['陈','李','黄','张','林','王','刘','吴','邓','周','杨','郑'].map(c => `<i>${c}</i>`).join('');
+renderCards(); renderDetail();
+</script>
+</body>
+</html>
